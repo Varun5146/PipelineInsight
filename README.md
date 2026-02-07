@@ -46,7 +46,7 @@ This project is being built as part of my DevOps portfolio to demonstrate:
 
 ## 👨‍💻 About
 
-Built by a DevOps Engineer exploring full-stack development and pipeline optimization.
+Built by Varun a DevOps Engineer exploring full-stack development and pipeline optimization.
 
 ## 📝 License
 
