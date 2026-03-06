@@ -1,15 +1,28 @@
 from fastapi import FastAPI, Depends
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from app.github_client import GitHubClient
 from app.database import engine, get_db
 from app import models
 from datetime import datetime
-
-# Create database tables
+# Create database tables FIRST
 models.Base.metadata.create_all(bind=engine)
 
+# Create the app (ONLY ONCE!)
 app = FastAPI(title="PipelineInsight")
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+# Create GitHub client
 github = GitHubClient()
+
+# Dashboard route
+@app.get("/dashboard")
+def dashboard():
+    """Serve the dashboard HTML page"""
+    return FileResponse("app/static/dashboard.html")
 
 @app.get("/")
 def read_root():
